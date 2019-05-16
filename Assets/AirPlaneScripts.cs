@@ -19,6 +19,6 @@ public class AirPlaneScripts : MonoBehaviour
         rb.AddTorque(Vector3.Cross(forward, Vector3.down));
         var force = (rb.mass * rb.drag * target_kmph / 3.6f) / (1f - rb.drag * Time.fixedDeltaTime);
         print(force);
-        rb.AddRelativeForce(new Vector3(0f, 0f, force));
+        rb.AddRelativeForce(new Vector3(0f, force, 0f));
     }
 }
