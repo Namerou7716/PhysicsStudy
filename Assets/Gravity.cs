@@ -18,8 +18,8 @@ public class Gravity : MonoBehaviour
     private void FixedUpdate()
     {
             velocity += gravity *dt;
-        position += velocity *dt;
-            mytransform.y += velocity;
+            position += velocity *dt;
+            mytransform.y += position;
 
             this.transform.position = mytransform;
         
