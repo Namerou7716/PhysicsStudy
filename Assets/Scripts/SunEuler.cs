@@ -6,7 +6,6 @@ public class SunEuler : MonoBehaviour
 {
     [SerializeField] float dt,checkTime;
     Vector3 position,vector,acceleration;
-    float nextFrame = 0;
     GameObject obj;
     // Start is called before the first frame update
     void Start()
@@ -23,11 +22,11 @@ public class SunEuler : MonoBehaviour
         MyEuler();
         //VectorTextEuler();
         //VectorMyEuler();
-        if (obj.GetComponent<CheckCollision>().time == checkTime+nextFrame)
+        if (obj.GetComponent<CheckCollision>().time == checkTime)
         {
-            //print(this.transform.position);
-            nextFrame += 60;
-            print(vector);
+            print(this.transform.position);
+            checkTime += 60;
+            //print(vector);
         }
        // print(acceleration);
     }
