@@ -5,6 +5,7 @@ using UnityEngine;
 public class SunEuler : MonoBehaviour
 {
     [SerializeField] float dt,checkTime;
+    float times = 0;
     Vector3 position,vector,acceleration;
     GameObject obj;
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class SunEuler : MonoBehaviour
         {
             print(this.transform.position);
             checkTime += 60;
+            times += 1;
+            print(times);
             //print(vector);
         }
        // print(acceleration);
