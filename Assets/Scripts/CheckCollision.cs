@@ -4,10 +4,32 @@ using UnityEngine;
 
 public class CheckCollision : MonoBehaviour
 {
-    public float time;
+    //int frameCount;
+    //float nextTime;
+    //public float dt;
+    private void Start()
+    {
+        //frameCount = 0;
+        //nextTime = Time.time+1;
+    }
     private void Update()
     {
-        time += 1;
+        //++frameCount;
+        //float time = Time.realtimeSinceStartup - prevTime;
+        //if (time >= 0.5f)
+        //{
+        //    dt = frameCount / time;
+        //    frameCount = 0;
+        //    prevTime = Time.realtimeSinceStartup;
+        //}
+        //frameCount++;
+        //if (Time.time >= nextTime)
+        //{
+        //    dt = frameCount;
+        //    print(frameCount);
+        //    frameCount = 0;
+        //    nextTime += 1;
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -15,7 +37,7 @@ public class CheckCollision : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             print("Hit");
-            print(time);
+            print(Time.time);
         }
     }
 }

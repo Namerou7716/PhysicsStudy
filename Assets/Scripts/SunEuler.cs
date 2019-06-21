@@ -4,54 +4,65 @@ using UnityEngine;
 
 public class SunEuler : MonoBehaviour
 {
-    [SerializeField] float dt,checkTime;
+    float dt=60,checkTime;
+    float fps;
     float times = 0;
     Vector3 position,vector,acceleration;
     GameObject obj;
+    int frameCount = 0;
+    float nextTime;
     // Start is called before the first frame update
     void Start()
     {
         position = this.transform.position;
         vector = new Vector3(1f, 0, 1f);
         obj = GameObject.FindGameObjectWithTag("GameController");
+        nextTime = Time.time + 1;
+        fps = 133;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Time.time >= nextTime)
+        {
+            fps = frameCount;
+            //print(frameCount);
+            frameCount = 0;
+            nextTime += 1;
+        }
+        if (Time.time > checkTime)
+        {
+            print(this.transform.position);
+            checkTime += 1;
+        }
         //TextEuler();
         MyEuler();
         //VectorTextEuler();
         //VectorMyEuler();
-        if (obj.GetComponent<CheckCollision>().time == checkTime)
-        {
-            print(this.transform.position);
-            checkTime += 60;
-            times += 1;
-            print(times);
-            //print(vector);
-        }
-       // print(acceleration);
+        
+        
     }
     public void TextEuler()
     {
         position = this.transform.position;
-        position = (position + vector*dt)/3600;
+        position = (position + vector*dt)/(dt*dt);
         this.transform.position += position;
         position = Vector3.zero;
     }
     public void MyEuler()
     {
         position = this.transform.position;
-        position = (position + vector*dt)/3600;
+        position = position + vector*dt;
+        position /= (dt * fps);
+        print(position);
         this.transform.position += position;
-        //print(this.transform.position);
     }
     public void VectorTextEuler()
     {
         position = this.transform.position;
         vector = vector - position * dt;
-        position += vector/3600;
+        position += vector/(dt*dt);
         //print(vector);
         this.transform.position = position;
     }
@@ -59,10 +70,11 @@ public class SunEuler : MonoBehaviour
     {
         position = this.transform.position;
         acceleration = vector / dt;
-        acceleration /= 3600;
+        acceleration /= (dt*dt);
         vector = vector + acceleration * dt;
         //print(vector);
         position += vector/60;
         this.transform.position = position;
     }
+
 }
