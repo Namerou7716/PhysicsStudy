@@ -24,6 +24,7 @@ public class FixEuler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //dt = Time.deltaTime;
         //FixEulerText();
         FixMyEuler();
         frameCount++;
@@ -46,7 +47,7 @@ public class FixEuler : MonoBehaviour
     {
         position = this.transform.position;
         position = position + 0.5f * (position/dt + (position + vector*dt) / dt) * dt;
-        position /= (fps*dt);
+        position /= (fps);
         this.transform.position += position;
     }
 }
