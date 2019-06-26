@@ -9,29 +9,28 @@ public class BoundSimulation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dt = 1f / 60f;
+        dt = 1 / 60f;
         gravity = new Vector3(0f, -9.8f, 0f);
         position = this.transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (this.transform.position.y < 0.5f)
+        AddForce(gravity);
+        vector += acceleration * dt;
+        position += vector * dt;
+        if(position.y < 0.5f)
         {
             vector = -vector;
         }
-        AddForce(gravity);
-        acceleration += force;
-        vector += acceleration * dt;
-        position += vector * dt;
         this.transform.position = position;
         acceleration = Vector3.zero;
-        force = Vector3.zero;
+        //force = Vector3.zero;
     }
     void AddForce(Vector3 hogeforce)
     {
-        force += hogeforce;
+        acceleration += hogeforce;
     }
     //private void OnCollisionEnter(Collision collision)
     //{
