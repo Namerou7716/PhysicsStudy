@@ -48,9 +48,10 @@ public class AccelerationMove : MonoBehaviour
         vector = new Vector3(0, -9.8f, 0) * Time.fixedDeltaTime;
         return vector;
     }
-    private void OnCollisionEnter(Collision collision) {
+    private void OnCollisionStay(Collision collision) {
         if (collision.gameObject.tag == "ground") {
-            //print(1111);
+            print(1111);
+            //m_acceleration = - 1 * Gravity();
             this.transform.position -= new Vector3(m_vector.x - m_vector.x * COR, m_vector.y - m_vector.y * COR, m_vector.z * COR);
             //Vector3 acceleration,vector;
             //acceleration= new Vector3(m_vector.x * (-0.8f), 10f, 0);
