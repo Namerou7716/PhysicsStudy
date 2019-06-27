@@ -16,7 +16,7 @@ public class Spring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        r = (this.GetComponent<Rigidbody>().mass * Mathf.Pow(this.GetComponent<Rigidbody>().drag, 2)) / 3;
+        r = (this.GetComponent<Rigidbody>().mass * Mathf.Pow(this.GetComponent<Rigidbody>().drag, 2)) / 4;
         AddSpringForce(r);
     }
     void AddSpringForce(float r) {

@@ -9,7 +9,7 @@ public class AccelerationMove : MonoBehaviour
     [SerializeField]
     Vector3 m_force;
     [SerializeField]
-    float m_time,m_mass,COR;
+    float m_time,m_mass,COR,k,c;
     // Start is called before the first frame update
     void Start(){
         m_gravity =new Vector3(0, -9.8f, 0);
@@ -21,6 +21,11 @@ public class AccelerationMove : MonoBehaviour
     void Update(){
         if (this.transform.position.y > 0) {
             Calculate();
+        }
+        if (this.transform.position.y < 0) {
+            Vector3 force=Vector3.zero;
+            force.y = k * (-this.transform.position.y) - c * m_vector.y;
+            AddForce(force);
         }
         //if (this.transform.position.y <= 0) {
         //    this.transform.position -= new Vector3(m_vector.x - m_vector.x * COR, m_vector.y - m_vector.y * COR, m_vector.z * COR);
@@ -40,7 +45,7 @@ public class AccelerationMove : MonoBehaviour
         this.transform.position+= m_vector;
     }
     void AddForce(Vector3 force){
-        m_acceleration = force;
+        m_acceleration += force;
     }
     Vector3 Gravity(){
         Vector3 vector;
