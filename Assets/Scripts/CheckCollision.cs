@@ -37,7 +37,7 @@ public class CheckCollision : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             print("Hit");
-            print(Time.time);
+            print(Time.realtimeSinceStartup);
         }
     }
 }

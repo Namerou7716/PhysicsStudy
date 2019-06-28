@@ -18,26 +18,21 @@ public class AccelerationMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
+    void FixedUpdate(){
         if (this.transform.position.y > 0) {
             Calculate();
         }
         if (this.transform.position.y < 0) {
-            Vector3 force=Vector3.zero;
+            Vector3 force = Vector3.zero;
             force.y = k * (-this.transform.position.y) - c * m_vector.y;
             AddForce(force);
         }
-        //if (this.transform.position.y <= 0) {
-        //    this.transform.position -= new Vector3(m_vector.x - m_vector.x * COR, m_vector.y - m_vector.y * COR, m_vector.z * COR);
-        //}
         if (isStarted) {
             return;
         }
         m_acceleration = m_force / m_mass;
         Calculate();
         isStarted = true;
-        //Gravity();
-        //if (this.transform.position.x <=0) print(Time.realtimeSinceStartup);
     }
     void Calculate(){
         m_acceleration += Gravity();
@@ -53,11 +48,11 @@ public class AccelerationMove : MonoBehaviour
         vector = new Vector3(0, -9.8f, 0) * Time.fixedDeltaTime;
         return vector;
     }
-    private void OnCollisionStay(Collision collision) {
+    private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "ground") {
             print(1111);
-            //m_acceleration = - 1 * Gravity();
-            this.transform.position -= new Vector3(m_vector.x - m_vector.x * COR, m_vector.y - m_vector.y * COR, m_vector.z * COR);
+            //m_acceleration = -1 * Gravity();
+            //this.transform.position -= new Vector3(m_vector.x - m_vector.x * COR, m_vector.y - m_vector.y * COR, m_vector.z * COR);
             //Vector3 acceleration,vector;
             //acceleration= new Vector3(m_vector.x * (-0.8f), 10f, 0);
             //vector = acceleration * Time.fixedDeltaTime;

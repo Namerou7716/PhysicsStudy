@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SunEuler : MonoBehaviour
 {
-    float dt=60,checkTime;
+    float dt=1/60f,checkTime;
     float fps;
     float times = 0;
     Vector3 position,vector,acceleration;
@@ -22,20 +22,21 @@ public class SunEuler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Time.time >= nextTime)
-        {
-            fps = frameCount;
-            //print(frameCount);
-            frameCount = 0;
-            nextTime += 1;
-        }
-        if (Time.time > checkTime)
-        {
-            print(this.transform.position);
-            checkTime += 1;
-        }
+        dt = Time.fixedDeltaTime;
+        //if (Time.time >= nextTime)
+        //{
+        //    fps = frameCount;
+        //    //print(frameCount);
+        //    frameCount = 0;
+        //    nextTime += 1;
+        //}
+        //if (Time.time > checkTime)
+        //{
+        //    print(this.transform.position);
+        //    checkTime += 1;
+        //}
         //TextEuler();
         MyEuler();
         //VectorTextEuler();
@@ -54,9 +55,9 @@ public class SunEuler : MonoBehaviour
     {
         position = this.transform.position;
         position = position + vector*dt;
-        position /= (dt * fps);
+        //position /= (dt * fps);
         print(position);
-        this.transform.position += position;
+        this.transform.position = position;
     }
     public void VectorTextEuler()
     {
